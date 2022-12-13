@@ -164,7 +164,6 @@ if talent_search :
   df_talent = df_talent.groupby('ツイート本文',as_index=False).head(1)
   df_talent = df_talent[df_talent['ツイート本文'].str.contains('企業|事業|面接|採用|二卒|第二新卒|就活|転職|勉強|働き方|就職|同期|卒|焦り')]
   df_talent = df_talent[~df_talent['ツイート本文'].str.contains('クス|中国人|RT|エロ|高級ソープ|AV|札幌No.1')]
-  df_talent = df_talent.reset_index(drop=True)
 df_talent
 
 #profile_keyword = st.text_input('対象人材のキーワードを入力してください')  
