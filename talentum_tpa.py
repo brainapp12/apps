@@ -160,11 +160,11 @@ if talent_search :
   df_talent = df_talent.groupby('ツイート本文',as_index=False).head(1)
 df_talent
 
- description = st.text_input('プロフに含まれるキーワードの設定 （正規表現）')
- profile_search = st.button("check profile")
- if profile_search :
-   df_display = df_talent[df_talent['description'].str.contains('description')]
- df_display
+description = st.text_input('プロフに含まれるキーワードの設定 （正規表現）')
+profile_search = st.button("check profile")
+if profile_search :
+    df_display = df_talent[df_talent['description'].str.contains('description')]
+    df_display
 
 
 csv = df_talent.to_csv(index=False)  
