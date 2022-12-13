@@ -86,6 +86,7 @@ def export_json(fpath, data):
         json.dump(data, f, ensure_ascii=False)
 
 
+# @st.cache        
 def search_tweet(max_count,keyword,value):
 
   dt_now_jst_aware = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
@@ -146,6 +147,7 @@ pagelist = ["TPA","Analytics"]
 
 st.set_page_config(layout="wide")
 selector=st.sidebar.selectbox( "Mode",pagelist)
+
 if selector=="TPA":
   st.title("Talentum：Talent Pool Automation")
   cnt=st.number_input('探索ツイート数の設定：0~50000',0,50000,0,step=1)
@@ -159,6 +161,7 @@ if talent_search :
   df_talent = df_tweet[['username','text','description','url']].rename(columns={'username':'ユーザーID','text':'ツイート本文','description':'プロフィール','url':'ツイートのURL'})
   df_talent = df_talent.groupby('ツイート本文',as_index=False).head(1)
 df_talent
+print('テスト')
 
 
 csv = df_talent.to_csv(index=False)  
