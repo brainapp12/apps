@@ -10,6 +10,8 @@ Original file is located at
 - import のところ以前のを整理^^;
 """
 
+pip install tqdm
+
 #%%writefile app.py
 import os
 import urllib
