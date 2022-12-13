@@ -168,7 +168,8 @@ if pforile_search :
   try:
     df_profile = df_talent[df_talent['description'].str.contains(profile_keyword)]
     display(df_profile)
-  pass
+  except:
+    pass
 
 
 csv = df_talent.to_csv(index=False)  
