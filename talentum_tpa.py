@@ -130,7 +130,7 @@ def search_tweet(max_count,keyword,value):
 
   df_tweet = df_tweet.merge(df_tweet_ex,on='author_id',how='inner')
   df_tweet['url'] = df_tweet['username'].apply(lambda x: 'https://twitter.com/' + str(x))
-  df_tweet = df_tweet[['name','username','text','description','retweet_count','like_count','url']]
+  df_tweet = df_tweet[['username','text','description','retweet_count','like_count','url']]
   return df_tweet
 
 
