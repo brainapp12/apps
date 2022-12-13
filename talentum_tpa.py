@@ -162,9 +162,10 @@ if talent_search :
   df_talent = df_talent.groupby('ツイート本文',as_index=False).head(1)
 df_talent
 
+profile_keyword = st.text_input('対象人材のキーワードを入力してください')  
 profile_search = st.button("Search Profile")
 if pforile_search :
-  profile_keyword = st.text_input('対象人材のキーワードを入力してください')  
+  
   df_profile = df_talent[df_talent['description'].str.contains(profile_keyword)]
 df_profile
 
