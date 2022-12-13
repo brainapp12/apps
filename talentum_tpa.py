@@ -12,7 +12,6 @@ Original file is located at
 
 #%%writefile app.py
 import os
-import tqdm
 import urllib
 import io
 import re
@@ -27,12 +26,6 @@ from datetime import date
 import collections
 import pandas as pd
 from datetime import timedelta
-import tweepy
-import pandas as pd
-import scipy
-import numpy as np
-import matplotlib.pyplot as plt
-
 
 
 def request_search(bearer_token, params, max_count):
@@ -60,8 +53,7 @@ def request_search(bearer_token, params, max_count):
             now = time.mktime(datetime.datetime.now().timetuple())
             wait_sec = int(rate_limit_reset - now)
             desc = f"Waiting for {wait_sec} seconds"
-            for _ in tqdm.trange(wait_sec, desc=desc):
-                time.sleep(1)
+            time.sleep(1)
 
         elif res.status_code != 200:
             raise Exception(res.status_code, res.text)
