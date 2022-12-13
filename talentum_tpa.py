@@ -140,11 +140,17 @@ def search_tweet(max_count,keyword,value):
 
 import streamlit as st
 import base64
+
+
+pagelist = ["TPA","Analytics"]
+
 st.set_page_config(layout="wide")
-st.title("Talentum：Talent Pool Automation")
-cnt=st.number_input('探索ツイート数の設定：0~50000',0,50000,0,step=1)
-keyword = st.text_input('人材探索キーワードの設定 半角で入力ください')
-st.text_area('分析メモ')
+selector=st.sidebar.selectbox( "Mode",pagelist)
+if selector=="TPA":
+  st.title("Talentum：Talent Pool Automation")
+  cnt=st.number_input('探索ツイート数の設定：0~50000',0,50000,0,step=1)
+  keyword = st.text_input('人材探索キーワードの設定 半角で入力ください')
+  st.text_area('分析メモ')
 
 
 talent_search = st.button("Search Talent")
@@ -153,6 +159,12 @@ if talent_search :
   df_talent = df_tweet[['username','text','description','url']].rename(columns={'username':'ユーザーID','text':'ツイート本文','description':'プロフィール','url':'ツイートのURL'})
   df_talent = df_talent.groupby('ツイート本文',as_index=False).head(1)
 df_talent
+
+ description = st.text_input('プロフに含まれるキーワードの設定 （正規表現）')
+ profile_search = st.button("check profile")
+ if profile_search :
+   df_display = df_talent[df_talent['description'].str.contains('description')]
+ df_display
 
 
 csv = df_talent.to_csv(index=False)  
