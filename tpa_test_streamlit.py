@@ -169,7 +169,7 @@ if selector=="TPA":
   if talent_search :
     df_tweet = search_tweet(cnt,keyword,24*6.9)
     df_talent = df_tweet[['username','text','description','url']].rename(columns={'username':'ユーザーID','text':'ツイート本文','description':'プロフィール','url':'ツイートのURL'})
-    df_talent = df_talent.groupby('ツイート本文',as_index=False).head(1)stre
+    df_talent = df_talent.groupby('ツイート本文',as_index=False).head(1)
   df_talent
 
 
