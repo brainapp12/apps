@@ -116,14 +116,16 @@ def search_tweet(max_count,keyword,value):
   df_tweet_ex = pd.DataFrame()
   for i in range(0,len(tweets)):
       try:
+          df_tweet.loc[i,'author_id'] = tweets[i]['author_id']
           df_tweet.loc[i,'text'] = tweets[i]['text']
           df_tweet_ex.loc[i,'name'] = expanded['users'][i]['name']
           df_tweet_ex.loc[i,'username'] = expanded['users'][i]['username']
           df_tweet_ex.loc[i,'description'] = expanded['users'][i]['description']
+          df_tweet_ex.loc[i,'author_id'] = expanded['users'][i]['id']
       except:
           pass
 
-
+  df_tweet = df_tweet.merge(df_tweet_ex,on='author_id',how='inner')
   df_tweet['url'] = df_tweet['username'].apply(lambda x: 'https://twitter.com/' + str(x))
   df_tweet = df_tweet[['username','text','description','url']]
   return df_tweet
