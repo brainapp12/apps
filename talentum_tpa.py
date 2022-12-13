@@ -162,6 +162,7 @@ if talent_search :
   df_tweet = search_tweet(cnt,keyword,24*6.95)
   df_talent = df_tweet.rename(columns={'username':'ユーザーID','text':'ツイート本文','description':'プロフィール','url':'ツイートのURL'})
   df_talent = df_talent.groupby('ツイート本文',as_index=False).head(1)
+  df_talent = df_talent[df_talent['text'].str.contains('企業|事業|面接|採用')]
 df_talent
 
 
