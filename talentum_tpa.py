@@ -118,12 +118,14 @@ def search_tweet(max_count,keyword,value):
   df_tweet_ex = pd.DataFrame()
   for i in range(0,len(tweets)):
       try:
+          df_tweet.loc[i,'author_id'] = tweets[i]['author_id']
           df_tweet.loc[i,'text'] = tweets[i]['text']
           df_tweet.loc[i,'like_count'] = tweets[i]['public_metrics']['like_count']
           df_tweet.loc[i,'retweet_count'] = tweets[i]['public_metrics']['retweet_count']
           df_tweet_ex.loc[i,'name'] = expanded['users'][i]['name']
           df_tweet_ex.loc[i,'username'] = expanded['users'][i]['username']
           df_tweet_ex.loc[i,'description'] = expanded['users'][i]['description']
+          df_tweet_ex.loc[i,'author_id'] = expanded['users'][i]['id']
       except:
           pass
 
