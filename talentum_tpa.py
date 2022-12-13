@@ -149,6 +149,7 @@ st.sidebar.selectbox(
 )
 st.sidebar.image(image, caption='Not just AI, We Analyze',use_column_width=True)
 
+# TPAの設定
 if selector=="TPA":
   st.title("Talentum：Talent Pool Automation")
   cnt=st.number_input('探索ツイート数の設定：0~50000',0,50000,0,step=10)
@@ -175,3 +176,19 @@ csv = df_talent.to_csv(index=False)
 b64 = base64.b64encode(csv.encode()).decode()
 href = f'<a href="data:application/octet-stream;base64,{b64}" download="result_utf-8.csv">Download Link</a>'
 st.markdown(f"人材探索データのダウンロード（csv）:  {href}", unsafe_allow_html=True)
+
+
+# Analyticsの設定
+if selector=="Analytics":
+  st.title("Talentum：Tweet Analytics")
+  cnt=st.number_input('探索ツイート数の設定：0~50000',0,50000,0,step=10)
+  keyword = st.text_input('人材探索キーワードの設定 半角で入力ください')
+  st.text_area('分析メモ')
+
+tweet_search = st.button("Analytics Tweet")
+if tweet_search :
+  df_tweet = search_tweet(cnt,keyword,24*6.95)
+  df_tweet = df_tweet.rename(columns={'username':'ユーザーID','text':'ツイート本文','description':'プロフィール','url':'ツイートのURL'})
+  df_tweet = df_tweet.groupby('ツイート本文',as_index=False).head(1)
+df_tweet
+
