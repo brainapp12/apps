@@ -25,14 +25,8 @@ from dateutil import relativedelta
 import collections
 import datetime
 import pandas as pd
-import plotly.express as px
 from datetime import timedelta
-import plotly.graph_objects as go
-import gspread
-import gspread_dataframe
-from oauth2client.client import GoogleCredentials
-from google.auth import default
-import pandas as pd
+
 
 
 
