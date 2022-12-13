@@ -18,7 +18,6 @@ import csv
 import json
 import time
 import urllib
-import tqdm
 import itertools
 import requests
 from datetime import date
@@ -62,8 +61,6 @@ def request_search(bearer_token, params, max_count):
             now = time.mktime(datetime.datetime.now().timetuple())
             wait_sec = int(rate_limit_reset - now)
             desc = f"Waiting for {wait_sec} seconds"
-            for _ in tqdm.trange(wait_sec, desc=desc):
-                time.sleep(1)
 
         elif res.status_code != 200:
             raise Exception(res.status_code, res.text)
