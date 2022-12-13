@@ -118,15 +118,12 @@ def search_tweet(max_count,keyword,value):
   df_tweet_ex = pd.DataFrame()
   for i in range(0,len(tweets)):
       try:
-          df_tweet.loc[i,'author_id'] = tweets[i]['author_id']
           df_tweet.loc[i,'text'] = tweets[i]['text']
           df_tweet.loc[i,'like_count'] = tweets[i]['public_metrics']['like_count']
           df_tweet.loc[i,'retweet_count'] = tweets[i]['public_metrics']['retweet_count']
           df_tweet_ex.loc[i,'name'] = expanded['users'][i]['name']
           df_tweet_ex.loc[i,'username'] = expanded['users'][i]['username']
           df_tweet_ex.loc[i,'description'] = expanded['users'][i]['description']
-          df_tweet_ex.loc[i,'author_id'] = expanded['users'][i]['id']
-
       except:
           pass
 
@@ -150,14 +147,14 @@ selector=st.sidebar.selectbox( "Mode",pagelist)
 
 if selector=="TPA":
   st.title("Talentum：Talent Pool Automation")
-  cnt=st.number_input('探索ツイート数の設定：0~50000',0,50000,0,step=1)
+  cnt=st.number_input('探索ツイート数の設定：0~50000',0,50000,0,step=10)
   keyword = st.text_input('人材探索キーワードの設定 半角で入力ください')
   st.text_area('分析メモ')
 
 
 talent_search = st.button("Search Talent")
 if talent_search :
-  df_tweet = search_tweet(cnt,keyword,24*6.9)
+  df_tweet = search_tweet(cnt,keyword,24*6.95)
   df_talent = df_tweet[['username','text','description','url']].rename(columns={'username':'ユーザーID','text':'ツイート本文','description':'プロフィール','url':'ツイートのURL'})
   df_talent = df_talent.groupby('ツイート本文',as_index=False).head(1)
 df_talent
@@ -166,11 +163,8 @@ df_talent
 profile_keyword = st.text_input('対象人材のキーワードを入力してください')  
 profile_search = st.button("Search Profile")
 if pforile_search :
-  try:
     df_profile = df_talent[keyword in df_talent['description']]
     df_profile
-  except:
-    pass
 
 
 csv = df_talent.to_csv(index=False)  
