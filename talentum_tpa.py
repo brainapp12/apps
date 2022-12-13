@@ -9,9 +9,9 @@ Original file is located at
 #5.Streamlit
 - import のところ以前のを整理^^;
 """
+from stqdm import stqdm
 
 
-#%%writefile app.py
 import os
 import urllib
 import io
