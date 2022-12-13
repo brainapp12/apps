@@ -143,7 +143,7 @@ pagelist = ["TPA","Analytics"]
 st.set_page_config(layout="wide")
 selector=st.sidebar.selectbox( "Mode",pagelist)
 image = Image.open('test.png')
-st.image(image, caption='Talentum',use_column_width=True)
+st.sidebar.image(image, caption='Talentum',use_column_width=True)
 st.sidebar.selectbox(
     "特化型AI：探索領域を選択して下さい",
     ("新卒", "第二新卒", "経験者")
