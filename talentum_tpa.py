@@ -163,10 +163,11 @@ df_talent
 description = st.text_input('プロフに含まれるキーワードの設定 （正規表現）')
 profile_search = st.button("check profile")
 if profile_search :
-    df_display = df_talent[df_talent['description'].str.contains('description')]
-    df_display
-else:
-    print('該当する人材はいませんでした')
+    try:
+        df_display = df_talent[df_talent['description'].str.contains('description')]
+        df_display
+    except:
+        print('該当する人材はいませんでした')
 
 
 csv = df_talent.to_csv(index=False)  
