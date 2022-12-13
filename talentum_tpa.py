@@ -161,7 +161,11 @@ if talent_search :
   df_talent = df_tweet[['username','text','description','url']].rename(columns={'username':'ユーザーID','text':'ツイート本文','description':'プロフィール','url':'ツイートのURL'})
   df_talent = df_talent.groupby('ツイート本文',as_index=False).head(1)
 df_talent
-print('テスト')
+
+profile_search = st.button("Search Profile")
+if pforile_search :
+  df_profile = df_talent[df_talent['description'].str.contains(profile_search)]
+df_profile
 
 
 csv = df_talent.to_csv(index=False)  
