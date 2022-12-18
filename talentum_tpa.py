@@ -169,9 +169,9 @@ if talent_search :
   df_talent = df_talent.reset_index(drop=True)
   df_talent
 
-  profile_search = st.button("Search Profile")
-  prof_keyword = st.text_input('人材プロフィール探索 半角で入力ください') 
-  if pforile_search :
+prof_keyword = st.text_input('人材プロフィール探索 半角で入力ください') 
+profile_search = st.button("Search Profile")
+if pforile_search :
     try:
         df_talent = df_talent[df_talent['プロフィール'].str.contains(prof_keyword)]
         df_talent
