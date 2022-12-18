@@ -168,11 +168,10 @@ if talent_search :
   df_talent = df_talent.reset_index(drop=True)
 df_talent
 
-#profile_keyword = st.text_input('対象人材のキーワードを入力してください')  
-#profile_search = st.button("Search Profile")
-#if pforile_search :
-#    df_profile = df_talent[keyword in df_talent['description']]
-#    df_profile
+profile_search = st.button("Search Profile")
+if pforile_search :
+    df_profile = df_talent['エンジニア' in df_talent['description']]
+    df_profile
 
 
 csv = df_talent.to_csv(index=False)  
@@ -188,10 +187,4 @@ if selector=="Analytics":
   keyword = st.text_input('人材探索キーワードの設定 半角で入力ください')
   st.text_area('分析メモ')
 
-tweet_search = st.button("Analytics Tweet")
-if tweet_search :
-  df_tweet = search_tweet(cnt,keyword,24*6.95)
-  df_tweet = df_tweet.rename(columns={'username':'ユーザーID','text':'ツイート本文','description':'プロフィール','url':'ツイートのURL'})
-  df_tweet = df_tweet.groupby('ツイート本文',as_index=False).head(1)
-df_tweet
 
