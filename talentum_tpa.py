@@ -166,18 +166,15 @@ if talent_search :
   df_talent = df_talent[~df_talent['ツイート本文'].str.contains('Kindle|Amazon|クス|中国人|RT|@|エロ|高級ソープ|AV|札幌No.1|女の子求人|ココナラ|⬅︎|本日も営業|まで営業|営業致しており|アダルト|オススメの転職サイト|オススメ転職サイト|オススメの求人転職サイト|人気の転職サイトランキング')]
   df_talent = df_talent[~df_talent['ツイート本文'].str.contains('中国人')]
   df_talent = df_talent[~df_talent['ユーザーID'].str.contains('it_navi')]
+  df_talent = df_talent[df_talent['プロフィール'].str.contains('新卒|卒|エンジニア|Web|SIer|組み込み|未経験|アプリ|開発')]
   df_talent = df_talent.reset_index(drop=True)
   df_talent
 
-prof_keyword = st.text_input('人材プロフィール探索 半角で入力ください') 
-profile_search = st.button("Search Profile")
-if pforile_search :
-    try:
-        df_talent = df_talent[df_talent['プロフィール'].str.contains(prof_keyword)]
-        df_talent
-    except:
-        print('該当ユーザーなし')
-
+# prof_keyword = st.text_input('人材プロフィール探索 半角で入力ください') 
+# profile_search = st.button("Search Profile")
+# if pforile_search :
+#     df_talent = df_talent[df_talent['プロフィール'].str.contains(prof_keyword)]
+#     df_talent
 
 
 
