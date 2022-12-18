@@ -143,9 +143,9 @@ image = Image.open('test.png')
 
 st.set_page_config(layout="wide")
 selector=st.sidebar.selectbox( "Mode",pagelist)
-st.sidebar.selectbox(
+area = st.sidebar.selectbox(
     "特化型AI：探索領域を選択して下さい",
-    ("新卒", "第二新卒", "経験者")
+    ("エンジニア","新卒", "第二新卒", "経験者")
 )
 st.sidebar.image(image, caption='Not just AI, We Analyze',use_column_width=True)
 
@@ -156,32 +156,33 @@ if selector=="TPA":
   keyword = st.text_input('人材探索キーワードの設定 半角で入力ください')
   st.text_area('分析メモ')
 
+if area == "エンジニア":
+    
+    talent_search = st.button("Search Talent")
+    if talent_search :
+      df_tweet = search_tweet(cnt,keyword,24*6.95)
+      df_talent = df_tweet.rename(columns={'username':'ユーザーID','text':'ツイート本文','description':'プロフィール','url':'ツイートのURL'})
+      df_talent = df_talent.groupby('ツイート本文',as_index=False).head(1)
+      #df_talent = df_talent[df_talent['ツイート本文'].str.contains('企業|事業|面接|採用|二卒|第二新卒|就活|転職|勉強|働き方|就職|同期|卒|焦り|EC|エントリーシート')]
+      df_talent = df_talent[~df_talent['ツイート本文'].str.contains('Kindle|Amazon|クス|中国人|RT|@|エロ|高級ソープ|AV|札幌No.1|女の子求人|ココナラ|⬅︎|本日も営業|まで営業|営業致しており|アダルト|オススメの転職サイト|オススメ転職サイト|オススメの求人転職サイト|人気の転職サイトランキング')]
+      df_talent = df_talent[~df_talent['ツイート本文'].str.contains('中国人')]
+      df_talent = df_talent[~df_talent['ユーザーID'].str.contains('it_navi')]
+      df_talent = df_talent[df_talent['プロフィール'].str.contains('新卒|卒|エンジニア|Web|SIer|組み込み|未経験|アプリ|開発')]
+      df_talent = df_talent.reset_index(drop=True)
+      df_talent
 
-talent_search = st.button("Search Talent")
-if talent_search :
-  df_tweet = search_tweet(cnt,keyword,24*6.95)
-  df_talent = df_tweet.rename(columns={'username':'ユーザーID','text':'ツイート本文','description':'プロフィール','url':'ツイートのURL'})
-  df_talent = df_talent.groupby('ツイート本文',as_index=False).head(1)
-  #df_talent = df_talent[df_talent['ツイート本文'].str.contains('企業|事業|面接|採用|二卒|第二新卒|就活|転職|勉強|働き方|就職|同期|卒|焦り|EC|エントリーシート')]
-  df_talent = df_talent[~df_talent['ツイート本文'].str.contains('Kindle|Amazon|クス|中国人|RT|@|エロ|高級ソープ|AV|札幌No.1|女の子求人|ココナラ|⬅︎|本日も営業|まで営業|営業致しており|アダルト|オススメの転職サイト|オススメ転職サイト|オススメの求人転職サイト|人気の転職サイトランキング')]
-  df_talent = df_talent[~df_talent['ツイート本文'].str.contains('中国人')]
-  df_talent = df_talent[~df_talent['ユーザーID'].str.contains('it_navi')]
-  df_talent = df_talent[df_talent['プロフィール'].str.contains('新卒|卒|エンジニア|Web|SIer|組み込み|未経験|アプリ|開発')]
-  df_talent = df_talent.reset_index(drop=True)
-  df_talent
-
-# prof_keyword = st.text_input('人材プロフィール探索 半角で入力ください') 
-# profile_search = st.button("Search Profile")
-# if pforile_search :
-#     df_talent = df_talent[df_talent['プロフィール'].str.contains(prof_keyword)]
-#     df_talent
+    # prof_keyword = st.text_input('人材プロフィール探索 半角で入力ください') 
+    # profile_search = st.button("Search Profile")
+    # if pforile_search :
+    #     df_talent = df_talent[df_talent['プロフィール'].str.contains(prof_keyword)]
+    #     df_talent
 
 
 
-csv = df_talent.to_csv(index=False)  
-b64 = base64.b64encode(csv.encode()).decode()
-href = f'<a href="data:application/octet-stream;base64,{b64}" download="result_utf-8.csv">Download Link</a>'
-st.markdown(f"人材探索データのダウンロード（csv）:  {href}", unsafe_allow_html=True)
+    csv = df_talent.to_csv(index=False)  
+    b64 = base64.b64encode(csv.encode()).decode()
+    href = f'<a href="data:application/octet-stream;base64,{b64}" download="result_utf-8.csv">Download Link</a>'
+    st.markdown(f"人材探索データのダウンロード（csv）:  {href}", unsafe_allow_html=True)
 
 
 # Analyticsの設定
