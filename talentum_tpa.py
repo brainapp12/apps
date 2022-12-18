@@ -170,9 +170,11 @@ df_talent
 
 profile_search = st.button("Search Profile")
 if pforile_search :
-    df_profile = df_talent['エンジニア' in df_talent['description']]
-    df_profile
-
+    try:
+        df_profile = df_talent['エンジニア' in df_talent['description']]
+        df_profile
+    except:
+        print('該当ユーザーなし')
 
 csv = df_talent.to_csv(index=False)  
 b64 = base64.b64encode(csv.encode()).decode()
