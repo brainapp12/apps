@@ -171,7 +171,7 @@ df_talent
 profile_search = st.button("Search Profile")
 if pforile_search :
     try:
-        df_profile = df_talent['エンジニア' in df_talent['description']]
+        df_profile = df_talent[df_talent['description'].str.contains('エンジニア')]
         df_profile
     except:
         print('該当ユーザーなし')
