@@ -193,21 +193,17 @@ if selector=="TPA":
         st.title("Talentum：Talent Pool Automation for Students")  
 
 
-# # Analyticsの設定
-# elif selector=="Analytics":
-#     st.title("Talentum：Tweet Analytics")
-#     cnt=st.number_input('探索ツイート数の設定：0~50000',0,50000,0,step=10)
-#     keyword = st.text_input('人材探索キーワードの設定 半角で入力ください')
-#     st.text_area('分析メモ')
+# Analyticsの設定
+else :
+    st.title("Talentum：Tweet Analytics")
+    cnt=st.number_input('探索ツイート数の設定：0~50000',0,50000,0,step=10)
+    keyword = st.text_input('人材探索キーワードの設定 半角で入力ください')
+    st.text_area('分析メモ')
 
-#     analyze_tweet = st.button("AnalyzeTweet")
-# 　　　　  if analyze_tweet :
-#         df_tweet = search_tweet(cnt,keyword,24*6.95)
-#         df_talent = df_tweet.rename(columns={'username':'ユーザーID','text':'ツイート本文','description':'プロフィール','url':'ツイートのURL'})
-#         df_talent = df_talent.groupby('ツイート本文',as_index=False).head(1)
-#         df_talent = df_talent.reset_index(drop=True)
-#         df_talent
-
-# else:
-#     print('該当なし')
-
+    analyze_tweet = st.button("AnalyzeTweet")
+　　　　  if analyze_tweet :
+        df_tweet = search_tweet(cnt,keyword,24*6.95)
+        df_talent = df_tweet.rename(columns={'username':'ユーザーID','text':'ツイート本文','description':'プロフィール','url':'ツイートのURL'})
+        df_talent = df_talent.groupby('ツイート本文',as_index=False).head(1)
+        df_talent = df_talent.reset_index(drop=True)
+        df_talent
