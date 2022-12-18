@@ -186,7 +186,7 @@ if selector=="TPA":
         st.markdown(f"人材探索データのダウンロード（csv）:  {href}", unsafe_allow_html=True)
 
     else:
-      st.title("Talentum：Tweet Analytics for Student Search")  
+        st.title("Talentum：Talent Pool Automation for Students")  
 
 
 # Analyticsの設定
