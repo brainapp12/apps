@@ -164,6 +164,8 @@ if talent_search :
   df_talent = df_talent.groupby('ツイート本文',as_index=False).head(1)
   #df_talent = df_talent[df_talent['ツイート本文'].str.contains('企業|事業|面接|採用|二卒|第二新卒|就活|転職|勉強|働き方|就職|同期|卒|焦り')]
   df_talent = df_talent[~df_talent['ツイート本文'].str.contains('クス|中国人|RT|@|エロ|高級ソープ|AV|札幌No.1|女の子求人|ココナラ|⬅︎|本日も営業|まで営業|営業致しており|アダルト|オススメの転職サイト|オススメ転職サイト|オススメの求人転職サイト|人気の転職サイトランキング')]
+  df_talent = df_talent[~df_talent['ツイート本文'].str.contains('中国人')]
+  df_talent = df_talent.reset_index(drop=True)
 df_talent
 
 #profile_keyword = st.text_input('対象人材のキーワードを入力してください')  
