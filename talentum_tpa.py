@@ -200,7 +200,7 @@ elif selector=="Analytics":
   keyword = st.text_input('人材探索キーワードの設定 半角で入力ください')
   st.text_area('分析メモ')
     
-　　　　analyze_tweet = st.button("Analyze Tweet")
+　　　　analyze_tweet = st.button("AnalyzeTweet")
 　　　　if analyze_tweet :
     df_tweet = search_tweet(cnt,keyword,24*6.95)
     df_talent = df_tweet.rename(columns={'username':'ユーザーID','text':'ツイート本文','description':'プロフィール','url':'ツイートのURL'})
