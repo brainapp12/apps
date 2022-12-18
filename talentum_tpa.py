@@ -168,10 +168,6 @@ if talent_search :
   df_talent = df_talent.reset_index(drop=True)
 df_talent
 
-profile_search = st.button("Search Profile")
-if pforile_search :
-    df_profile = df_talent['エンジニア' in df_talent['description']]
-    df_profile
 
 
 csv = df_talent.to_csv(index=False)  
