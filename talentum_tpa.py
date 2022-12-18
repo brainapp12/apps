@@ -165,7 +165,7 @@ if selector=="TPA":
         talent_search = st.button("Search Talent")
         if talent_search :
           df_tweet = search_tweet(cnt,keyword,24*6.95)
-          df_tweet = df_tweet[['username','text','description','url']]
+          df_tweet = df_tweet[['username','text','description','url','like_count','retweet_count']]
           df_talent = df_tweet.rename(columns={'username':'ユーザーID','text':'ツイート本文','description':'プロフィール','url':'ツイートのURL'})
           df_talent = df_talent.groupby('ツイート本文',as_index=False).head(1)
           #df_talent = df_talent[df_talent['ツイート本文'].str.contains('企業|事業|面接|採用|二卒|第二新卒|就活|転職|勉強|働き方|就職|同期|卒|焦り|EC|エントリーシート')]
