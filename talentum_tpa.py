@@ -189,14 +189,24 @@ if selector=="TPA":
         href = f'<a href="data:application/octet-stream;base64,{b64}" download="result_utf-8.csv">Download Link</a>'
         st.markdown(f"人材探索データのダウンロード（csv）:  {href}", unsafe_allow_html=True)
         
-        import streamlit as st
-        import plotly.graph_objs as go
-        import plotly.express as px
+        
+        # 可視化
+        from vega_datasets import data
 
-        fig = df_talent.plot.scatter(x=df_talent.like_count, y=df_talent.retweet_count)
-        fig.update_layout(font_size=20, hoverlabel_font_size=20)
-        fig.show()
+        source = df_talent
 
+        fig = alt.Chart(source).mark_circle(size=60).encode(
+            x='like_count',
+            y='retweet_count',
+            color='Origin',
+            tooltip=['Name', 'Origin', 'Horsepower', 'Miles_per_Gallon']
+        ).properties(
+            width=500,
+            height=500
+        ).interactive()
+
+        st.write(fig)
+        
     else:
         st.title("Talentum：Talent Pool Automation for Students")  
 
