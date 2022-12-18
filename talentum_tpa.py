@@ -208,4 +208,6 @@ elif selector=="Analytics":
         df_talent = df_talent.reset_index(drop=True)
         df_talent
 
+else:
+    print('該当なし')
 
