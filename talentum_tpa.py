@@ -183,6 +183,9 @@ if area == "エンジニア":
     b64 = base64.b64encode(csv.encode()).decode()
     href = f'<a href="data:application/octet-stream;base64,{b64}" download="result_utf-8.csv">Download Link</a>'
     st.markdown(f"人材探索データのダウンロード（csv）:  {href}", unsafe_allow_html=True)
+    
+else:
+  st.title("Talentum：Tweet Analytics for Student Search")  
 
 
 # Analyticsの設定
