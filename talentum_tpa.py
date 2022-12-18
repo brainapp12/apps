@@ -195,10 +195,10 @@ if selector=="TPA":
 
 # Analyticsの設定
 elif selector=="Analytics":
-  st.title("Talentum：Tweet Analytics")
-  cnt=st.number_input('探索ツイート数の設定：0~50000',0,50000,0,step=10)
-  keyword = st.text_input('人材探索キーワードの設定 半角で入力ください')
-  st.text_area('分析メモ')
+    st.title("Talentum：Tweet Analytics")
+    cnt=st.number_input('探索ツイート数の設定：0~50000',0,50000,0,step=10)
+    keyword = st.text_input('人材探索キーワードの設定 半角で入力ください')
+    st.text_area('分析メモ')
 
     analyze_tweet = st.button("AnalyzeTweet")
 　　　　  if analyze_tweet :
