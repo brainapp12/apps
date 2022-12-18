@@ -167,15 +167,19 @@ if talent_search :
   df_talent = df_talent[~df_talent['ツイート本文'].str.contains('中国人')]
   df_talent = df_talent[~df_talent['ユーザーID'].str.contains('it_navi')]
   df_talent = df_talent.reset_index(drop=True)
-df_talent
+  df_talent
 
-profile_search = st.button("Search Profile")
-if pforile_search :
+  profile_search = st.button("Search Profile")
+  prof_keyword = st.text_input('人材プロフィール探索 半角で入力ください') 
+  if pforile_search :
     try:
-        df_talent = df_talent[df_talent['プロフィール'].str.contains('エンジニア|Web|サーバーサイド')]
+        df_talent = df_talent[df_talent['プロフィール'].str.contains(prof_keyword)]
         df_talent
     except:
         print('該当ユーザーなし')
+
+
+
 
 csv = df_talent.to_csv(index=False)  
 b64 = base64.b64encode(csv.encode()).decode()
