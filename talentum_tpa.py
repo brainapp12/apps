@@ -202,8 +202,6 @@ elif selector=="Analytics":
     
 　　　　analyze_tweet = st.button("Analyze Tweet")
 　　　　if analyze_tweet :
-
-    
     df_tweet = search_tweet(cnt,keyword,24*6.95)
     df_talent = df_tweet.rename(columns={'username':'ユーザーID','text':'ツイート本文','description':'プロフィール','url':'ツイートのURL'})
     df_talent = df_talent.groupby('ツイート本文',as_index=False).head(1)
