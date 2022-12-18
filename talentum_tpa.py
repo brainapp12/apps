@@ -188,6 +188,14 @@ if selector=="TPA":
         b64 = base64.b64encode(csv.encode()).decode()
         href = f'<a href="data:application/octet-stream;base64,{b64}" download="result_utf-8.csv">Download Link</a>'
         st.markdown(f"人材探索データのダウンロード（csv）:  {href}", unsafe_allow_html=True)
+        
+        import streamlit as st
+        import plotly.graph_objs as go
+        import plotly.express as px
+
+        fig = df_talent.plot.scatter(x=df_talent.like_count, y=df_talent.retweet_count)
+        fig.update_layout(font_size=20, hoverlabel_font_size=20)
+        fig.show()
 
     else:
         st.title("Talentum：Talent Pool Automation for Students")  
