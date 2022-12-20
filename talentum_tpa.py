@@ -175,7 +175,6 @@ if selector=="TPA":
           #df_talent = df_talent[df_talent['プロフィール'].str.contains('理工|システム|SE|フリーランス|新卒|卒|エンジニア|Web|SIer|組み込み|未経験|アプリ|開発|大|大学|理系|院|東大|京大|Python|フレームワーク')]
           df_talent = df_talent[df_talent['プロフィール'].str.contains('営業|セールス')]
           df_talent = df_talent.reset_index(drop=True)
-          df_talent = df_talent.groupby('username',as_index=False).head(1)
           df_talent
 
         # prof_keyword = st.text_input('人材プロフィール探索 半角で入力ください') 
