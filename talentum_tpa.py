@@ -131,7 +131,7 @@ def search_tweet(max_count,keyword,value):
 
   df_tweet = df_tweet.merge(df_tweet_ex,on='author_id',how='inner')
   df_tweet['url'] = df_tweet['username'].apply(lambda x: 'https://twitter.com/' + str(x))
-  df_tweet = df_tweet[['username','text','description','url','like_count','retweet_count','reply_count']]
+  df_tweet = df_tweet[['name','username','text','description','url','like_count','retweet_count','reply_count']]
   return df_tweet
 
 
@@ -172,7 +172,7 @@ if selector=="TPA":
           df_talent = df_talent[~df_talent['ツイート本文'].str.contains('Kindle|Amazon|クス|中国人|RT|@|エロ|高級ソープ|AV|札幌No.1|女の子求人|ココナラ|⬅︎|本日も営業|まで営業|営業致しており|アダルト|オススメの転職サイト|オススメ転職サイト|オススメの求人転職サイト|人気の転職サイトランキング')]
           df_talent = df_talent[~df_talent['ツイート本文'].str.contains('中国人')]
           df_talent = df_talent[~df_talent['ユーザーID'].str.contains('it_navi|tomadoimoi1nnt1|pharmacist_navi|pharmacist_skil|LenoraCherniack|BritneyWehnes')]
-          df_talent = df_talent[df_talent['プロフィール'].str.contains('理工|システム|SE|フリーランス|新卒|卒|エンジニア|Web|SIer|組み込み|未経験|アプリ|開発|大|大学|理系|院|東大|京大|Python|フレームワーク')]
+          #df_talent = df_talent[df_talent['プロフィール'].str.contains('理工|システム|SE|フリーランス|新卒|卒|エンジニア|Web|SIer|組み込み|未経験|アプリ|開発|大|大学|理系|院|東大|京大|Python|フレームワーク')]
           df_talent = df_talent.reset_index(drop=True)
           df_talent
 
