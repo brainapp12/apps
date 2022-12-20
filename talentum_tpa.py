@@ -8,7 +8,7 @@ Original file is located at
 
 """
 
-e
+
 import os
 import urllib
 import io
