@@ -148,7 +148,7 @@ st.set_page_config(layout="wide")
 selector=st.sidebar.selectbox( "Mode",pagelist)
 area = st.sidebar.selectbox(
     "特化型AI：探索領域を選択して下さい",
-    ("エンジニア","新卒", "第二新卒", "経験者")
+    ("エンジニア","データサイエンティスト", "アナリスト", "DX領域")
 )
 st.sidebar.image(image, caption='Not just AI, We Analyze',use_column_width=True)
 
@@ -173,7 +173,7 @@ if selector=="TPA":
           df_talent = df_talent[~df_talent['ツイート本文'].str.contains('中国人')]
           df_talent = df_talent[~df_talent['ユーザーID'].str.contains('it_navi|tomadoimoi1nnt1|pharmacist_navi|pharmacist_skil|LenoraCherniack|BritneyWehnes')]
           #df_talent = df_talent[df_talent['プロフィール'].str.contains('理工|システム|SE|フリーランス|新卒|卒|エンジニア|Web|SIer|組み込み|未経験|アプリ|開発|大|大学|理系|院|東大|京大|Python|フレームワーク')]
-          df_talent = df_talent[df_talent['プロフィール'].str.contains('営業|セールス')]
+          df_talent = df_talent[df_talent['プロフィール'].str.contains('エンジニア|Python|プログラミング|未経験|駆け出し|繋がりたい')]
           df_talent = df_talent.reset_index(drop=True)
           df_talent
 
